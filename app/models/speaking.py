@@ -14,6 +14,7 @@ class SpeakingTest(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(200), nullable=False)
     description = Column(Text)
+    difficulty = Column(String(50), default="Intermediate")  # Easy, Intermediate, Hard
     duration = Column(Integer)  # Duration in minutes
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)

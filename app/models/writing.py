@@ -12,6 +12,8 @@ class WritingTest(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(200), nullable=False)
     description = Column(Text)
+    test_type = Column(String(50), default="Academic")  # Academic or General
+    difficulty = Column(String(50), default="Intermediate")  # Easy, Intermediate, Hard
     duration = Column(Integer, default=60)  # Duration in minutes
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)

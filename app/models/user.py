@@ -13,9 +13,8 @@ class User(Base):
     full_name = Column(String(200))
     profile_picture_url = Column(String(500))
     
-    # Auth providers (only Google and Apple)
+    # Auth provider (only Google)
     google_id = Column(String(255), unique=True, nullable=True)
-    apple_id = Column(String(255), unique=True, nullable=True)
     
     # Simple preferences
     target_band_score = Column(String(10), nullable=True)  # "7.0", "6.5", etc

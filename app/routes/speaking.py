@@ -3,12 +3,12 @@ from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from typing import List
 from app.services.speaking_service import SpeakingService
+from app.auth import get_current_user
 from app.database import get_db
 
 router = APIRouter()
 
 class SpeakingSubmissionRequest(BaseModel):
-    user_id: int
     test_id: int
 
 class SpeakingAnswerRequest(BaseModel):
@@ -32,10 +32,17 @@ class SpeakingScoreResponse(BaseModel):
     overall_band: float
 
 @router.post("/submissions")
-async def create_speaking_submission(request: SpeakingSubmissionRequest, db: Session = Depends(get_db)):
+async def create_speaking_submission(
+    request: SpeakingSubmissionRequest, 
+    current_user = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    if current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Admin cannot create submissions")
+    
     submission = SpeakingService.create_submission(
         db=db,
-        user_id=request.user_id,
+        user_id=current_user.id,
         test_id=request.test_id
     )
     return {"submission_id": submission.id}

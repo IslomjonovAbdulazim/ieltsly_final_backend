@@ -3,12 +3,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./ielts_practice.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:WjZLYQUSYFbVsmOUUGzjDqLzvTjTZRhU@shortline.proxy.rlwy.net:51529/railway")
 
-engine = create_engine(
-    DATABASE_URL,
-    connect_args={"check_same_thread": False} if "sqlite" in DATABASE_URL else {}
-)
+engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

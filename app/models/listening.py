@@ -12,6 +12,7 @@ class ListeningTest(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(200), nullable=False)
     description = Column(Text)
+    difficulty = Column(String(50), default="Intermediate")  # Easy, Intermediate, Hard
     duration = Column(Integer, default=30)  # Duration in minutes
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)

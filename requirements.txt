@@ -35,6 +35,7 @@ pydub==0.25.1
 # AI/ML Libraries
 openai==1.3.0
 anthropic==0.8.0
+google-generativeai==0.3.2
 
 # Background Tasks
 celery==5.3.4
