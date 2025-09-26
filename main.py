@@ -6,12 +6,19 @@ from app.routes.admin import reading as admin_reading
 from app.routes.admin import writing as admin_writing
 from app.routes.admin import listening as admin_listening
 from app.routes.admin import dashboard as admin_dashboard
+from app.database import create_tables
 
 app = FastAPI(
     title="IELTS Practice API",
     description="Backend API for IELTS practice tests",
     version="1.0.0"
 )
+
+# Create database tables on startup
+@app.on_event("startup")
+async def startup_event():
+    create_tables()
+    print("✅ Database tables created successfully!")
 
 app.add_middleware(
     CORSMiddleware,

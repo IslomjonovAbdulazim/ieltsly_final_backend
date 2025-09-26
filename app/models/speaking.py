@@ -1,11 +1,9 @@
 from sqlalchemy import Column, Integer, String, Text, Boolean, DateTime, ForeignKey, Numeric
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
 from decimal import Decimal, ROUND_HALF_UP
 from datetime import datetime
 import random
-
-Base = declarative_base()
+from .base import Base
 
 
 class SpeakingTest(Base):
