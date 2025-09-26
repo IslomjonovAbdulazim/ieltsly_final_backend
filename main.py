@@ -7,6 +7,7 @@ from app.routes.admin import writing as admin_writing
 from app.routes.admin import listening as admin_listening
 from app.routes.admin import dashboard as admin_dashboard
 from app.database import create_tables
+import uvicorn
 
 app = FastAPI(
     title="IELTS Practice API",
@@ -56,8 +57,4 @@ async def health_check():
     return {"status": "healthy"}
 
 if __name__ == "__main__":
-    import uvicorn
-    import os
-    port = int(os.getenv("PORT", 8080))
-    print(f"🚀 Starting server on port {port}")
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
